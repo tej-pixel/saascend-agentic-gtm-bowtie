@@ -172,6 +172,7 @@ footer{background:var(--navy);color:#9aa6b8;padding:40px 0;font-size:13.5px}
       <a href="#bowtie">The Bowtie</a>
       <a href="#impact">Impact</a>
       <a href="#stack">Build a Stack</a>
+      <a href="agents.html">Agent Specs</a>
       <a href="#cta" class="btn btn-primary">Book a Call</a>
     </div>
   </div>
@@ -302,71 +303,9 @@ footer{background:var(--navy);color:#9aa6b8;padding:40px 0;font-size:13.5px}
   </div>
 </footer>
 
+<script src="assets/data.js"></script>
 <script>
-/* ---------------- DATA ---------------- */
-const STAGES = [
-  { id:"awareness", phase:"Acquisition", name:"Awareness", role:"Demand Generation", side:"L",
-    headline:{n:3,suf:"×",pre:"",lbl:"more in-market accounts"},
-    bottleneck:"You can't sell to accounts you can't see. Most demand is invisible until it's too late to influence.", agents:[
-    {icon:"🛰️", name:"ICP Signal Agent", what:"Monitors intent, firmographic and web signals to surface in-market accounts before they ever raise a hand.", impact:"3× more in-market accounts", hrs:6, lever:true},
-    {icon:"🎯", name:"Content Personalization Agent", what:"Tailors landing pages, ads and outbound copy to each persona and segment in real time.", impact:"+40% campaign engagement", hrs:5, lever:true},
-    {icon:"✍️", name:"Content Engine Agent", what:"Drafts and optimizes blogs, landing pages and nurture sequences from your positioning.", impact:"4× content velocity", hrs:9, lever:false},
-    {icon:"💸", name:"Ad Spend Optimizer Agent", what:"Continuously reallocates budget toward the highest-intent segments and kills the waste.", impact:"−25% blended CAC", hrs:4, lever:true},
-  ]},
-  { id:"engage", phase:"Acquisition", name:"Engage", role:"Marketing → SDR", side:"L",
-    headline:{n:28,suf:"%",pre:"+",lbl:"more meetings booked"},
-    bottleneck:"Speed and routing decide which leads ever get worked. Most teams leak the best ones in the first hour.", agents:[
-    {icon:"⚡", name:"Lead Routing Agent", what:"Instantly assigns every inbound lead to the right rep and enforces follow-up SLAs.", impact:"Speed-to-lead under 5 minutes", tag:"Marketplace", hrs:4, lever:true},
-    {icon:"💬", name:"Inbound Qualification Agent", what:"Qualifies and books meetings 24/7 from chat, forms and email — never lets a hot lead cool.", impact:"+28% meetings booked", hrs:8, lever:true},
-    {icon:"🧹", name:"CRM Hygiene Agent", what:"De-dupes, enriches and repairs records so routing and scoring run on clean data.", impact:"92% data completeness", tag:"Marketplace · Live", hrs:7, lever:false},
-    {icon:"🎚️", name:"Lead Scoring Agent", what:"Ranks every lead on fit and intent so reps work the right ones first.", impact:"2× SDR efficiency", hrs:5, lever:true},
-    {icon:"📨", name:"Outbound Sequencing Agent", what:"Builds and personalizes multi-touch outbound at scale, tuned to each persona.", impact:"+35% reply rate", hrs:8, lever:true},
-  ]},
-  { id:"qualify", phase:"Conversion", name:"Qualify", role:"SDR → AE", side:"L",
-    headline:{n:18,suf:"%",pre:"+",lbl:"win rate"},
-    bottleneck:"Inconsistent discovery and blind forecasting are where pipeline quietly dies between stages.", agents:[
-    {icon:"🎙️", name:"Call Scoring Agent", what:"Scores every call against MEDDPICC / BANT and delivers rep coaching automatically.", impact:"+18% win rate", tag:"Marketplace · Live & Free", hrs:6, lever:true},
-    {icon:"🔎", name:"Pipeline Inspection Agent", what:"Flags at-risk deals, stalled stages and forecast gaps before they cost you the quarter.", impact:"95% forecast accuracy", tag:"Marketplace · Live", hrs:5, lever:true},
-    {icon:"✉️", name:"Follow-up Agent", what:"Drafts recap emails and next-step plans straight from the call recording.", impact:"5 hrs / rep / week saved", tag:"Marketplace", hrs:10, lever:false},
-    {icon:"🗂️", name:"Discovery Prep Agent", what:"Builds a research brief on every account and contact before the call.", impact:"3 hrs / rep / week saved", hrs:6, lever:false},
-    {icon:"🥊", name:"Competitive Intel Agent", what:"Surfaces a live battlecard the moment a competitor enters the deal.", impact:"+12% competitive win rate", hrs:3, lever:true},
-  ]},
-  { id:"commit", phase:"Conversion · Closed-Won", name:"Closed-Won", role:"Deal Desk", side:"K",
-    headline:{n:90,suf:"%",pre:"−",lbl:"faster quote-to-cash"},
-    bottleneck:"The knot of the bowtie — the moment of commitment. Friction here delays revenue and breaks the handoff.", agents:[
-    {icon:"📄", name:"Quote & CPQ Agent", what:"Generates quotes, routes approvals and assembles order forms in minutes, not days.", impact:"Quote turnaround 2 days → 2 hrs", hrs:6, lever:true},
-    {icon:"🤝", name:"Handoff Agent", what:"Packages the won deal into a clean implementation brief so nothing is lost at handoff.", impact:"100% handoff completeness", hrs:4, lever:false},
-    {icon:"📝", name:"Contract Review Agent", what:"Flags non-standard terms and drafts redlines against your playbook.", impact:"−70% legal cycle time", hrs:5, lever:false},
-  ]},
-  { id:"onboard", phase:"Retention", name:"Onboard", role:"Implementation", side:"R",
-    headline:{n:35,suf:"%",pre:"−",lbl:"time-to-first-value"},
-    bottleneck:"Time-to-first-value is the single biggest driver of year-one churn — and it's mostly project drag.", agents:[
-    {icon:"🚀", name:"Onboarding Orchestration Agent", what:"Builds the project plan, schedules kickoff and tracks every milestone automatically.", impact:"Time-to-first-value −35%", hrs:7, lever:true},
-    {icon:"✅", name:"Implementation QA Agent", what:"Validates configuration against the design doc before go-live — catches gaps early.", impact:"Go-live defects −60%", hrs:5, lever:false},
-    {icon:"🔀", name:"Data Migration Agent", what:"Maps, cleans and loads legacy data into the new system without the manual slog.", impact:"5× faster migration", hrs:8, lever:false},
-  ]},
-  { id:"adopt", phase:"Retention", name:"Adopt", role:"Customer Success", side:"R",
-    headline:{n:22,suf:"%",pre:"−",lbl:"logo churn"},
-    bottleneck:"CS can't watch every account. Churn signals hide in usage data nobody has time to read.", agents:[
-    {icon:"❤️", name:"Health Score Agent", what:"Combines product usage, support and sentiment into an early churn-risk signal.", impact:"Churn −22%", hrs:5, lever:true},
-    {icon:"📊", name:"QBR Builder Agent", what:"Auto-assembles QBR decks from product and CRM data so CSMs lead, not build slides.", impact:"6 hrs saved per QBR", hrs:8, lever:false},
-    {icon:"🛟", name:"Support Deflection Agent", what:"Answers from your knowledge base and drafts agent replies for everything else.", impact:"45% ticket deflection", hrs:9, lever:false},
-    {icon:"🔔", name:"Adoption Nudge Agent", what:"Nudges stalled users toward the features that actually drive retention.", impact:"+30% feature adoption", hrs:4, lever:true},
-  ]},
-  { id:"expand", phase:"Growth", name:"Expand", role:"Account Management", side:"R",
-    headline:{n:30,suf:"%",pre:"+",lbl:"expansion pipeline"},
-    bottleneck:"Expansion is the cheapest revenue you'll ever book — and the easiest to miss without signals.", agents:[
-    {icon:"🌱", name:"Whitespace & Upsell Agent", what:"Detects expansion signals and builds the upsell play with talking points and timing.", impact:"+30% expansion pipeline", hrs:6, lever:true},
-    {icon:"🔁", name:"Renewal Agent", what:"Flags renewals early and drafts the renewal motion with full risk context.", impact:"Renewal rate +12 pts", hrs:5, lever:true},
-    {icon:"📈", name:"Usage-to-Value Agent", what:"Turns product usage into the ROI story that justifies the next tier.", impact:"+18% net revenue retention", hrs:4, lever:true},
-  ]},
-  { id:"advocate", phase:"Growth", name:"Advocate", role:"Marketing × CS", side:"R",
-    headline:{n:2,suf:"×",pre:"",lbl:"customer referrals"},
-    bottleneck:"Happy customers are your cheapest demand engine — but advocacy almost never gets asked for.", agents:[
-    {icon:"⭐", name:"Advocacy Agent", what:"Identifies promoters and drafts reference, review and case-study asks at the right moment.", impact:"2× referrals generated", hrs:4, lever:true},
-    {icon:"🗣️", name:"Voice-of-Customer Agent", what:"Closes the loop on NPS and feedback, routing themes to product and CS.", impact:"+15 NPS", hrs:5, lever:false},
-  ]},
-];
+/* ---------------- DATA: STAGES lives in assets/data.js (shared with agents.html) ---------------- */
 
 /* ---------------- GEOMETRY ---------------- */
 const VBW=1000, VBH=500, CY=250;
